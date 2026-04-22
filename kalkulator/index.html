@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Abyan - Proyek PPLG</title>
+    <style>
+        /* CSS - Desain Tampilan */
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            background-image: url("bg.jpg");
+            background-size: cover;
+        }
+
+        .main-container {
+            display: flex;
+            gap: 20px;
+            max-width: 700px;
+            width: 100%;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Styling Kalkulator */
+        .calculator {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            width: 320px;
+        }
+
+        .display {
+            background: #2d2d2d;
+            margin-bottom: 20px;
+            padding: 20px;
+            text-align: right;
+            border-radius: 12px;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+
+        #prev-display {
+            color: #888;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        #curr-display {
+            color: #ffffff;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        button {
+            padding: 18px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            background: #333;
+            color: white;
+            transition: all 0.2s ease;
+        }
+
+        button:hover {
+            background: #444;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .btn-operator { background: #ff9500; color: white; }
+        .btn-operator:hover { background: #ffaa33; }
+
+        .btn-func { background: #a5a5a5; color: black; }
+        .btn-func:hover { background: #d4d4d4; }
+
+        .btn-equal { background: #2ecc71; grid-column: span 1; }
+        .btn-equal:hover { background: #27ae60; }
+
+        .span-two { grid-column: span 2; }
+
+        /* Styling Riwayat */
+        .history-panel {
+            background: white;
+            width: 280px;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .history-panel h3 {
+            margin-top: 0;
+            color: #333;
+            border-bottom: 2px solid #f0f2f5;
+            padding-bottom: 10px;
+        }
+
+        #history-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: 350px;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+
+        #history-list li {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            font-size: 0.9rem;
+            color: #666;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        #clear-history-btn {
+            margin-top: 15px;
+            background: #e74c3c;
+            color: white;
+            padding: 10px;
+            font-size: 0.9rem;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+    <div class="calculator">
+        <div class="display">
+            <div id="prev-display"></div>
+            <div id="curr-display">0</div>
+        </div>
+        <div class="buttons">
+            <button class="btn-func" onclick="clearAll()">AC</button>
+            <button class="btn-func" onclick="deleteLast()">DEL</button>
+            <button class="btn-operator" onclick="chooseOperator('^')">x²</button>
+            <button class="btn-operator" onclick="chooseOperator('/')">÷</button>
+            
+            <button onclick="appendNum('7')">7</button>
+            <button onclick="appendNum('8')">8</button>
+            <button onclick="appendNum('9')">9</button>
+            <button class="btn-operator" onclick="chooseOperator('*')">×</button>
+            
+            <button onclick="appendNum('4')">4</button>
+            <button onclick="appendNum('5')">5</button>
+            <button onclick="appendNum('6')">6</button>
+            <button class="btn-operator" onclick="chooseOperator('-')">-</button>
+            
+            <button onclick="appendNum('1')">1</button>
+            <button onclick="appendNum('2')">2</button>
+            <button onclick="appendNum('3')">3</button>
+            <button class="btn-operator" onclick="chooseOperator('+')">+</button>
+            
+            <button onclick="appendNum('0')" class="span-two">0</button>
+            <button onclick="appendNum('.')">.</button>
+            <button class="btn-equal" onclick="calculate()">=</button>
+        </div>
+    </div>
+
+    <div class="history-panel">
+        <h3>Riwayat</h3>
+        <ul id="history-list">
+            <li style="text-align: center; border: none;">Belum ada riwayat</li>
+        </ul>
+        <button id="clear-history-btn" onclick="clearHistory()">Hapus Riwayat</button>
+    </div>
+</div>
+
+<script>
+    /* JavaScript - Logika Kalkulator */
+    let currentInput = '0';
+    let previousInput = '';
+    let operation = undefined;
+
+    const currDisplayElement = document.getElementById('curr-display');
+    const prevDisplayElement = document.getElementById('prev-display');
+    const historyList = document.getElementById('history-list');
+
+    function updateDisplay() {
+        currDisplayElement.innerText = currentInput;
+        if (operation != null) {
+            prevDisplayElement.innerText = `${previousInput} ${operation}`;
+        } else {
+            prevDisplayElement.innerText = '';
+        }
+    }
+
+    function appendNum(number) {
+        if (number === '.' && currentInput.includes('.')) return;
+        if (currentInput === '0' && number !== '.') {
+            currentInput = number.toString();
+        } else {
+            currentInput = currentInput.toString() + number.toString();
+        }
+        updateDisplay();
+    }
+
+    function chooseOperator(op) {
+        if (currentInput === '') return;
+
+        // Khusus Pangkat 2 (Langsung Hitung)
+        if (op === '^') {
+            const val = parseFloat(currentInput);
+            const result = val * val;
+            addHistory(`${val}²`, result);
+            currentInput = result.toString();
+            updateDisplay();
+            return;
+        }
+
+        if (previousInput !== '') {
+            calculate();
+        }
+        operation = op;
+        previousInput = currentInput;
+        currentInput = '';
+        updateDisplay();
+    }
+
+    function calculate() {
+        let result;
+        const prev = parseFloat(previousInput);
+        const curr = parseFloat(currentInput);
+        
+        if (isNaN(prev) || isNaN(curr)) return;
+
+        switch (operation) {
+            case '+': result = prev + curr; break;
+            case '-': result = prev - curr; break;
+            case '*': result = prev * curr; break;
+            case '/': 
+                result = curr === 0 ? "Error" : prev / curr; 
+                break;
+            default: return;
+        }
+
+        addHistory(`${prev} ${operation} ${curr}`, result);
+        currentInput = result.toString();
+        operation = undefined;
+        previousInput = '';
+        updateDisplay();
+    }
+
+    function deleteLast() {
+        if (currentInput.length === 1) {
+            currentInput = '0';
+        } else {
+            currentInput = currentInput.slice(0, -1);
+        }
+        updateDisplay();
+    }
+
+    function clearAll() {
+        currentInput = '0';
+        previousInput = '';
+        operation = undefined;
+        updateDisplay();
+    }
+
+    // Fungsi Riwayat
+    function addHistory(expression, result) {
+        // Hapus pesan "Belum ada riwayat" jika ada
+        if (historyList.innerText.includes("Belum ada riwayat")) {
+            historyList.innerHTML = '';
+        }
+
+        const li = document.createElement('li');
+        li.innerHTML = `<strong>${expression}</strong> = ${result}`;
+        historyList.prepend(li);
+    }
+
+    function clearHistory() {
+        historyList.innerHTML = '<li style="text-align: center; border: none;">Belum ada riwayat</li>';
+    }
+</script>
+
+</body>
+</html>

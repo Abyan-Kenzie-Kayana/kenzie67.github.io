@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tebak Negara Lite</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 500px; margin: 0 auto; padding: 20px; background: #f9f9f9; color: #222; }
+  h1 { text-align: center; font-size: 24px; margin-bottom: 4px; }
+  p.sub { text-align: center; color: #777; font-size: 13px; margin-bottom: 16px; }
+
+  #scorebar { display: flex; justify-content: center; gap: 30px; margin-bottom: 16px; text-align: center; }
+  #scorebar div span { display: block; }
+  #scorebar div span:first-child { font-size: 20px; font-weight: bold; }
+  #scorebar div span:last-child { font-size: 11px; color: #888; text-transform: uppercase; }
+
+  #clue-box { background: #fff; border: 1px solid #ddd; border-radius: 10px; padding: 14px 16px; margin-bottom: 14px; }
+  #clue-box .label { font-size: 11px; color: #999; text-transform: uppercase; margin-bottom: 6px; }
+  #flag { font-size: 28px; text-align: center; display: block; margin-bottom: 6px; }
+  #fact { font-size: 14px; line-height: 1.6; }
+  #hint-badge { display: inline-block; margin-top: 10px; background: #fff8e1; color: #7a5a00; border: 1px solid #f0d060; border-radius: 20px; padding: 3px 12px; font-size: 12px; }
+
+  #grid { display: flex; flex-direction: column; gap: 6px; align-items: center; margin-bottom: 14px; }
+  .grid-row { display: flex; gap: 6px; }
+  .cell {
+    width: 40px; height: 44px; border: 1.5px solid #ccc; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: bold; text-transform: uppercase; background: #fff;
+  }
+  .cell.hint  { border-color: #e0a800; background: #fff8e1; color: #7a5a00; }
+  .cell.filled { border-color: #999; }
+  .cell.correct  { background: #d4edda; border-color: #28a745; color: #155724; }
+  .cell.yellow   { background: #fff3cd; border-color: #ffc107; color: #7a5a00; }
+  .cell.absent   { background: #e9ecef; border-color: #adb5bd; color: #6c757d; }
+
+  #input-area { display: flex; gap: 8px; justify-content: center; margin-bottom: 10px; }
+  #guess-input { padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px; width: 220px; outline: none; }
+  #guess-input:focus { border-color: #28a745; }
+  button { padding: 8px 18px; border: 1px solid #ccc; border-radius: 6px; cursor: pointer; font-size: 14px; background: #fff; }
+  button.primary { background: #28a745; color: #fff; border-color: #28a745; }
+  button.primary:hover { background: #218838; }
+  button:hover { background: #f0f0f0; }
+
+  #msg { text-align: center; font-size: 14px; font-weight: bold; min-height: 20px; margin-bottom: 8px; color: #c0392b; }
+  #msg.ok { color: #28a745; }
+
+  #nav { text-align: center; margin-top: 10px; }
+  #answer-box { text-align: center; background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 10px; margin-bottom: 10px; }
+  #answer-box .ans { font-size: 22px; font-weight: bold; color: #c0392b; }
+</style>
+</head>
+<body>
+
+<h1>🌍 Tebak Negara</h1>
+<p class="sub">Tebak nama negara dari fakta uniknya &bull; 6 percobaan</p>
+
+<div id="scorebar">
+  <div><span id="s-benar">0</span><span>Benar</span></div>
+  <div><span id="s-soal">1/10</span><span>Soal</span></div>
+  <div><span id="s-streak">0</span><span>Streak</span></div>
+</div>
+
+<div id="clue-box">
+  <div class="label" id="clue-label">Fakta Unik</div>
+  <span id="flag"></span>
+  <div id="fact"></div>
+  <div id="hint-badge"></div>
+</div>
+
+<div id="grid"></div>
+
+<div id="answer-box" style="display:none">
+  <div style="font-size:13px;color:#888;margin-bottom:4px">Jawabannya adalah</div>
+  <div class="ans" id="answer-text"></div>
+</div>
+
+<div id="input-area">
+  <input id="guess-input" type="text" placeholder="Ketik jawaban..." autocomplete="off" autocorrect="off" spellcheck="false">
+  <button class="primary" onclick="submitGuess()">Tebak</button>
+</div>
+
+<div id="msg"></div>
+<div id="nav"></div>
+
+<script>
+const DATA = [
+  { name: "BRAZIL",   flag: "🇧🇷", fact: "Negara ini memiliki hutan hujan terbesar di dunia yang menyerap sekitar 20% oksigen bumi, dijuluki 'paru-paru dunia'." },
+  { name: "JEPANG",   flag: "JP", fact: "Negara ini adalah satu-satunya negara yang pernah dijatuhi bom atom, namun kini menjadi salah satu negara paling maju di dunia." },
+  { name: "MESIR",    flag: "MR", fact: "Negara ini memiliki salah satu dari 7 keajaiban dunia kuno yang masih berdiri hingga sekarang — dibangun ribuan tahun lalu tanpa mesin modern." },
+  { name: "KANADA",   flag: "KA", fact: "Negara ini memiliki garis pantai terpanjang di dunia, mencapai lebih dari 200.000 kilometer." },
+  { name: "RUSSIA",   flag: "RU", fact: "Negara ini adalah yang terluas di dunia, mencakup 11 zona waktu sekaligus dari Eropa hingga Pasifik." },
+  { name: "INDIA",    flag: "IN", fact: "Negara ini adalah satu-satunya tempat di mana harimau dan singa hidup di alam liar secara bersamaan." },
+  { name: "SWISS",    flag: "SW", fact: "Negara ini adalah tempat lahirnya Palang Merah Internasional dan sudah netral dalam perang lebih dari 200 tahun." },
+  { name: "ISLANDIA", flag: "IA", fact: "Negara ini menghasilkan hampir 100% listriknya dari energi terbarukan dan hampir tidak ada pohon asli di sana." },
+  { name: "KENYA",    flag: "KE", fact: "Negara ini adalah rumah 'Great Rift Valley' dan tempat ditemukannya fosil manusia tertua di dunia." },
+  { name: "PERU",     flag: "PE", fact: "Negara ini adalah rumah Machu Picchu, kota kuno suku Inca di puncak Andes yang baru ditemukan dunia pada 1911." }
+];
+
+let qi = 0, score = 0, streak = 0, guesses = [], maxGuesses = 6;
+
+function startQuestion() {
+  guesses = [];
+  const d = DATA[qi];
+  document.getElementById("clue-label").textContent = `Fakta Unik — Negara ${qi + 1}`;
+  document.getElementById("flag").textContent = d.flag;
+  document.getElementById("fact").textContent = d.fact;
+  document.getElementById("hint-badge").innerHTML = `Huruf pertama: <strong>${d.name[0]}</strong> &nbsp;&bull;&nbsp; ${d.name.length} huruf`;
+  document.getElementById("answer-box").style.display = "none";
+  document.getElementById("msg").textContent = "";
+  document.getElementById("msg").className = "";
+  document.getElementById("nav").innerHTML = "";
+
+  const inp = document.getElementById("guess-input");
+  inp.value = "";
+  inp.maxLength = d.name.length;
+  inp.style.display = "";
+  inp.nextElementSibling.style.display = "";
+  inp.focus();
+
+  document.getElementById("s-soal").textContent = `${qi + 1}/${DATA.length}`;
+  renderGrid();
+}
+
+function renderGrid() {
+  const ans = DATA[qi].name;
+  const len = ans.length;
+  let html = "";
+  for (let r = 0; r < maxGuesses; r++) {
+    html += `<div class="grid-row">`;
+    const guess = guesses[r] || "";
+    for (let c = 0; c < len; c++) {
+      let ch = guess[c] || "";
+      let cls = "cell";
+      if (r === 0 && c === 0) cls = "cell hint";
+      else if (guess) {
+        if (guess[c] === ans[c]) cls = "cell correct";
+        else if (ans.includes(guess[c])) cls = "cell yellow";
+        else cls = "cell absent";
+      }
+      const display = (r === 0 && c === 0 && !guess) ? ans[0] : ch;
+      html += `<div class="${cls}">${display}</div>`;
+    }
+    html += `</div>`;
+  }
+  document.getElementById("grid").innerHTML = html;
+}
+
+function submitGuess() {
+  const ans = DATA[qi].name;
+  const inp = document.getElementById("guess-input");
+  const g = inp.value.toUpperCase().trim();
+  const msg = document.getElementById("msg");
+
+  if (g.length !== ans.length) {
+    msg.textContent = `Jawaban harus ${ans.length} huruf!`;
+    msg.className = "";
+    return;
+  }
+
+  guesses.push(g);
+  inp.value = "";
+  renderGrid();
+
+  if (g === ans) {
+    score++; streak++;
+    document.getElementById("s-benar").textContent = score;
+    document.getElementById("s-streak").textContent = streak;
+    msg.textContent = `Benar! 🎉 Ditebak dalam ${guesses.length} percobaan.`;
+    msg.className = "ok";
+    endRound();
+  } else if (guesses.length >= maxGuesses) {
+    streak = 0;
+    document.getElementById("s-streak").textContent = streak;
+    document.getElementById("answer-box").style.display = "block";
+    document.getElementById("answer-text").textContent = ans;
+    msg.textContent = "Sayang sekali! Coba lagi.";
+    msg.className = "";
+    endRound();
+  } else {
+    msg.textContent = `Salah! Sisa ${maxGuesses - guesses.length} percobaan.`;
+    msg.className = "";
+    inp.focus();
+  }
+}
+
+function endRound() {
+  document.getElementById("guess-input").style.display = "none";
+  document.getElementById("guess-input").nextElementSibling.style.display = "none";
+  const nav = document.getElementById("nav");
+  if (qi < DATA.length - 1) {
+    nav.innerHTML = `<button class="primary" onclick="nextQ()">Soal Berikutnya &rarr;</button>`;
+  } else {
+    nav.innerHTML = `<p style="font-weight:bold;color:#28a745;margin-bottom:8px">🏆 Selesai! Skor: ${score}/${DATA.length}</p><button onclick="restart()">Main Lagi</button>`;
+  }
+}
+
+function nextQ() {
+  qi++;
+  document.getElementById("s-soal").textContent = `${qi + 1}/${DATA.length}`;
+  startQuestion();
+}
+
+function restart() {
+  qi = 0; score = 0; streak = 0;
+  document.getElementById("s-benar").textContent = 0;
+  document.getElementById("s-streak").textContent = 0;
+  startQuestion();
+}
+
+document.getElementById("guess-input").addEventListener("keydown", e => {
+  if (e.key === "Enter") submitGuess();
+});
+
+startQuestion();
+</script>
+</body>
+</html>

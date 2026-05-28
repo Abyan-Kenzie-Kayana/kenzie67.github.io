@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informasi UMKM Kelurahan Wangon</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        /* Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navbar Customization */
+        .navbar {
+            background-color: #ffffff !important;
+            padding: 15px 20px;
+        }
+        .navbar-brand {
+            color: #27a770 !important; /* Warna hijau khas */
+            font-weight: 700;
+            font-size: 24px;
+            text-decoration: none;
+        }
+        
+        /* Tombol Toggler Menggunakan Gambar garis.png */
+        .navbar-toggler {
+            border: none;
+            padding: 0;
+            background: transparent;
+        }
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+        .icon-garis {
+            width: 30px;
+            height: auto;
+            display: block;
+        }
+
+        /* Main Section dengan Background Mira.jpeg */
+        .main-section {
+            flex: 1;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('Mira.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: scroll;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        /* Judul Halaman */
+        .section-title {
+            color: #000000;
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Pembungkus Gambar Atas (Kembar.jpeg) */
+        .img-container {
+            max-width: 750px;
+            width: 100%;
+            margin-bottom: 35px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .img-content {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Kotak Putih Konten Teks */
+        .umkm-card {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px 45px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            max-width: 750px;
+            width: 100%;
+            color: #000000;
+            text-align: justify;
+        }
+
+        .umkm-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .umkm-card h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .umkm-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .umkm-list li {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .umkm-list li::before {
+            content: "•";
+            position: absolute;
+            left: 5px;
+            top: 0;
+            font-weight: bold;
+        }
+
+        /* Responsif untuk Layar HP */
+        @media (max-width: 576px) {
+            .section-title { font-size: 1.8rem; margin-bottom: 20px; }
+            .main-section { padding: 25px 15px; }
+            .umkm-card { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Kelurahan Wangon</a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <img src="garis.png" alt="Menu" class="icon-garis">
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto text-end">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="index.html">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="profil.html">Profil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="sejarah.html">Sejarah</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="struktur.html">Struktur</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active fw-bold text-primary" href="umkm.html">UMKM</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="galeri.html">Galeri</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="kontak.html">Kontak</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-section">
+        
+        <h1 class="section-title">Informasi UMKM</h1>
+
+        <div class="img-container">
+            <img src="Kembar.jpeg" alt="UMKM Kelurahan Wangon" class="img-content">
+        </div>
+
+        <div class="umkm-card">
+            <p>Kelurahan Wangon di Banjarnegara memiliki ekosistem UMKM yang cukup dinamis, terutama didorong oleh sektor kuliner, industri rumahan, dan jasa. Sebagaimana wilayah kelurahan pada umumnya, UMKM di sini sering kali terorganisir melalui kelompok-kelompok usaha kecil yang dibina oleh pihak kelurahan atau instansi terkait di tingkat kabupaten.</p>
+            
+            <p>Berikut adalah gambaran umum jenis UMKM yang berkembang di Kelurahan Wangon:</p>
+
+            <h4>1. Sektor Kuliner dan Makanan Olahan</h4>
+            <p>Sektor ini merupakan yang paling dominan di tingkat lokal. Beberapa jenis produk yang sering ditemui meliputi:</p>
+            <ul class="umkm-list">
+                <li><strong>Makanan Ringan (Camilan):</strong> Berbagai jenis keripik (singkong, pisang, talas) dan makanan tradisional seperti rengginang dan peyek.</li>
+                <li><strong>Olahan Kedelai:</strong> Mengingat Banjarnegara memiliki banyak pengrajin tempe dan tahu, beberapa pelaku usaha di Kelurahan Wangon juga bergerak di bidang ini.</li>
+                <li><strong>Katering dan Warung Makan:</strong> Usaha skala rumah tangga yang melayani kebutuhan konsumsi harian masyarakat maupun acara-acara tertentu.</li>
+            </ul>
+
+            <h4>2. Industri Kreatif dan Kerajinan</h4>
+            <p>Walaupun sentra besar seperti Batik Gumelem atau Keramik Klampok berada di kecamatan lain, di Kelurahan Wangon terdapat pelaku usaha yang bergerak di bidang:</p>
+            <ul class="umkm-list">
+                <li>Kerajinan Tangan: Pembuatan souvenir atau hantaran pernikahan skala rumahan.</li>
+                <li>Konveksi Kecil: Penjahit rumahan yang menerima pesanan seragam atau pakaian jadi untuk pasar lokal.</li>
+            </ul>
+
+            <h4>3. Sektor Jasa</h4>
+            <p>UMKM di bidang jasa juga tumbuh subur untuk melayani kebutuhan warga di dalam dan sekitar kelurahan:</p>
+            <ul class="umkm-list">
+                <li>Jasa Servis Elektronik dan Bengkel: Melayani perbaikan kendaraan bermotor atau alat rumah tangga.</li>
+                <li>Laundry Kiloan: Sangat berkembang seiring dengan mobilitas warga yang tinggi.</li>
+                <li>Percetakan dan Foto Copy: Melayani kebutuhan administrasi warga dan pelajar.</li>
+            </ul>
+
+            <h4>Upaya Pengembangan UMKM Lokal</h4>
+            <p>Untuk mendukung pertumbuhan UMKM tersebut, biasanya pihak kelurahan melakukan beberapa langkah strategis, di antaranya:</p>
+            <ul class="umkm-list">
+                <li>Pendataan melalui Forum UMKM: Agar pelaku usaha mendapatkan akses informasi mengenai bantuan modal, pelatihan, atau sertifikasi halal.</li>
+                <li>Pemanfaatan Platform Digital: Mendorong pelaku usaha untuk mulai menggunakan media sosial sebagai sarana promosi.</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Kelurahan Wangon</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        /* Google Fonts untuk font yang mirip di gambar */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navbar Customization */
+        .navbar {
+            background-color: #ffffff !important;
+            padding: 15px 20px;
+        }
+        .navbar-brand {
+            color: #27a770 !important; /* Warna hijau khas */
+            font-weight: 700;
+            font-size: 24px;
+            text-decoration: none;
+        }
+        
+        /* Tombol Toggler Menggunakan Gambar garis.png */
+        .navbar-toggler {
+            border: none;
+            padding: 0;
+            background: transparent;
+        }
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+        .icon-garis {
+            width: 30px; /* Atur lebar gambar garis di sini */
+            height: auto;
+            display: block;
+        }
+
+        /* Hero / Background Utama */
+        .hero-section {
+            flex: 1;
+            /* Menggunakan file gambar gapura.jpeg */
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('gapura.jpeg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 20px;
+        }
+
+        /* Tulisan Melayang di Atas Kotak Putih */
+        .hero-title-top {
+            color: #000000;
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
+            text-align: center;
+        }
+
+        /* Kotak Putih Tengah (Card) */
+        .welcome-card {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px 60px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        .welcome-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 15px;
+        }
+        .welcome-card h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #000;
+            margin: 0;
+        }
+
+        /* Group Tombol di Bawah */
+        .button-group {
+            display: flex;
+            gap: 20px;
+        }
+        .btn-custom {
+            background-color: #ffffff;
+            color: #000000;
+            font-weight: 600;
+            padding: 10px 35px;
+            border-radius: 30px;
+            border: 2px solid #ffffff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .btn-custom:hover {
+            background-color: #e0e0e0;
+            border-color: #e0e0e0;
+            color: #000;
+            transform: translateY(-2px);
+        }
+
+        /* Responsif untuk Layar HP */
+        @media (max-width: 576px) {
+            .hero-title-top { font-size: 1.8rem; }
+            .welcome-card { padding: 25px 20px; }
+            .welcome-card h3 { font-size: 1.2rem; }
+            .welcome-card h2 { font-size: 1.8rem; }
+            .button-group { flex-direction: column; gap: 10px; width: 100%; max-width: 250px;}
+            .btn-custom { text-align: center; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Kelurahan Wangon</a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <img src="garis.png" alt="Menu" class="icon-garis">
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto text-end">
+                    <li class="nav-item">
+                        <a class="nav-link active fw-bold text-primary" href="index.html">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="profil.html">Profil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="sejarah.html">Sejarah</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="struktur.html">Struktur</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="umkm.html">UMKM</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="galeri.html">Galeri</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="kontak.html">Kontak</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-section">
+        
+        <h1 class="hero-title-top">Profil Kelurahan Wangon</h1>
+
+        <div class="welcome-card">
+            <h3>Wellcome to...</h3>
+            <h2>Kelurahan Wangon</h2>
+        </div>
+
+        <div class="button-group">
+            <a href="profil.html" class="btn-custom">Lihat Profil</a>
+            <a href="kontak.html" class="btn-custom">Lihat Kontak</a>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        console.log("Website Kelurahan Wangon Siap!");
+    </script>
+</body>
+</html>

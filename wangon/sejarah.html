@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sejarah Kelurahan Wangon</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        /* Google Fonts untuk font yang mirip di gambar */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navbar Customization */
+        .navbar {
+            background-color: #ffffff !important;
+            padding: 15px 20px;
+        }
+        .navbar-brand {
+            color: #27a770 !important; /* Warna hijau khas */
+            font-weight: 700;
+            font-size: 24px;
+            text-decoration: none;
+        }
+        
+        /* Tombol Toggler Menggunakan Gambar garis.png */
+        .navbar-toggler {
+            border: none;
+            padding: 0;
+            background: transparent;
+        }
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+        .icon-garis {
+            width: 30px;
+            height: auto;
+            display: block;
+        }
+
+        /* Hero / Background Utama Sejarah */
+        .main-section {
+            flex: 1;
+            background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('lapangan.jpeg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 40px 20px;
+        }
+
+        /* Judul Sejarah Wangon */
+        .section-title {
+            color: #000000;
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Kotak Putih Besar (Card Konten Sejarah) */
+        .history-card {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px 50px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            width: 100%;
+            text-align: justify;
+        }
+        
+        .history-card p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #000000;
+            margin-bottom: 25px;
+        }
+        
+        .history-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Pengaturan List Manual Menggunakan Karakter Titik Tengah (•) */
+        .history-card .bullet-point {
+            position: relative;
+            padding-left: 25px;
+        }
+        .history-card .bullet-point::before {
+            content: "•";
+            position: absolute;
+            left: 5px;
+            top: 0;
+            font-size: 1.3rem;
+            color: #000000;
+        }
+
+        /* Responsif untuk Layar HP */
+        @media (max-width: 576px) {
+            .section-title { font-size: 2rem; margin-bottom: 20px; }
+            .history-card { padding: 25px 20px; }
+            .history-card p { font-size: 1rem; line-height: 1.6; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Kelurahan Wangon</a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <img src="garis.png" alt="Menu" class="icon-garis">
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto text-end">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="index.html">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="profil.html">Profil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active fw-bold text-primary" href="sejarah.html">Sejarah</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="struktur.html">Struktur</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="umkm.html">UMKM</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="galeri.html">Galeri</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="kontak.html">Kontak</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-section">
+        
+        <h1 class="section-title">Sejarah Wangon</h1>
+
+        <div class="history-card">
+            <p>Wangon pada mulanya berstatus sebagai Desa, namun seiring dengan perkembangan tata kota Banjarnegara, statusnya berubah menjadi Kelurahan.</p>
+            
+            <p class="bullet-point">Bagian dari Kota: Kelurahan Wangon merupakan satu dari beberapa kelurahan yang membentuk wajah "Kota Banjarnegara".</p>
+            
+            <p class="bullet-point">Transformasi Lahan: Dulu wilayah ini didominasi oleh lahan persawahan dan perkebunan rakyat. Kini, Wangon telah berkembang menjadi kawasan padat penduduk dengan fungsi utama sebagai kawasan hunian, perkantoran, dan jasa.</p>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

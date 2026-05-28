@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Struktur Organisasi Kelurahan Wangon</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        /* Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navbar Customization */
+        .navbar {
+            background-color: #ffffff !important;
+            padding: 15px 20px;
+        }
+        .navbar-brand {
+            color: #27a770 !important; /* Warna hijau khas */
+            font-weight: 700;
+            font-size: 24px;
+            text-decoration: none;
+        }
+        
+        /* Tombol Toggler Menggunakan Gambar garis.png */
+        .navbar-toggler {
+            border: none;
+            padding: 0;
+            background: transparent;
+        }
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+        .icon-garis {
+            width: 30px;
+            height: auto;
+            display: block;
+        }
+
+        /* Main Section dengan Background Kelurahan.jpeg */
+        .main-section {
+            flex: 1;
+            background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('Kelurahan.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: scroll;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        /* Judul Halaman */
+        .section-title {
+            color: #000000;
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 35px;
+            text-align: center;
+        }
+
+        /* Pembungkus Gambar Bagan Utama (so.png) */
+        .bagan-container {
+            max-width: 800px;
+            width: 100%;
+            margin-bottom: 50px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .img-bagan {
+            width: 100%;
+            height: auto;
+            border: 4px solid #333333;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Container untuk List Penjelasan Pejabat */
+        .pejabat-grid {
+            max-width: 850px;
+            width: 100%;
+        }
+
+        /* Gaya Kotak Jabatan Kelurahan */
+        .pejabat-card-wrapper {
+            position: relative;
+            margin-bottom: 35px;
+            text-align: center;
+        }
+
+        /* Label Atas (Jabatan) */
+        .jabatan-label {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ffffff;
+            color: #000000;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 4px 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            z-index: 2;
+            white-space: nowrap;
+        }
+
+        /* Kotak Putih Utama (Nama) */
+        .nama-box {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 25px 20px 20px 20px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #000000;
+            z-index: 1;
+        }
+
+        /* Responsif untuk Layar HP */
+        @media (max-width: 576px) {
+            .section-title { font-size: 1.8rem; margin-bottom: 25px; }
+            .main-section { padding: 25px 15px; }
+            .nama-box { font-size: 1rem; padding: 22px 15px 15px 15px; }
+            .jabatan-label { font-size: 0.8rem; top: -12px; }
+            .pejabat-grid { max-width: 320px; } /* Mencegah card terlalu lebar di HP */
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Kelurahan Wangon</a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <img src="garis.png" alt="Menu" class="icon-garis">
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto text-end">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="index.html">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="profil.html">Profil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="sejarah.html">Sejarah</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active fw-bold text-primary" href="struktur.html">Struktur</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="umkm.html">UMKM</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="galeri.html">Galeri</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="kontak.html">Kontak</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-section">
+        
+        <h1 class="section-title">Struktur Organisasi</h1>
+
+        <div class="bagan-container">
+            <img src="so.png" alt="Bagan Struktur Organisasi Kelurahan Wangon" class="img-bagan">
+        </div>
+
+        <div class="pejabat-grid container">
+            
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-12">
+                    <div class="pejabat-card-wrapper">
+                        <div class="jabatan-label">Kepala Lurah</div>
+                        <div class="nama-box">M. ABDULLOH KN, S.Ag</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-12">
+                    <div class="pejabat-card-wrapper">
+                        <div class="jabatan-label">Sekretaris</div>
+                        <div class="nama-box">MOHAMAD WAHYU, S.IP</div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="pejabat-card-wrapper">
+                        <div class="jabatan-label">Kasi Pemerintahan</div>
+                        <div class="nama-box">AMIN LASMIATUN, SE</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-12">
+                    <div class="pejabat-card-wrapper">
+                        <div class="jabatan-label">Kasi Kemasyarakatan</div>
+                        <div class="nama-box">MINDIYATI, SE</div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="pejabat-card-wrapper">
+                        <div class="jabatan-label">Admin Perkantoran</div>
+                        <div class="nama-box">AGUS PURWOTO</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-12">
+                    <div class="pejabat-card-wrapper">
+                        <div class="jabatan-label">OP Layanan Komputer</div>
+                        <div class="nama-box">SETYO JEFRI ABADI, SE</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak dan Pengaduan - Kelurahan Wangon</title>
+    <!-- Bootstrap 5 CSS via CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        /* Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navbar Customization */
+        .navbar {
+            background-color: #ffffff !important;
+            padding: 15px 20px;
+        }
+        .navbar-brand {
+            color: #27a770 !important; /* Warna hijau khas Kelurahan Wangon */
+            font-weight: 700;
+            font-size: 24px;
+            text-decoration: none;
+        }
+        
+        /* Tombol Toggler Menggunakan Gambar garis.png */
+        .navbar-toggler {
+            border: none;
+            padding: 0;
+            background: transparent;
+        }
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+        .icon-garis {
+            width: 30px;
+            height: auto;
+            display: block;
+        }
+
+        /* Main Section dengan Background gapura.jpeg */
+        .main-section {
+            flex: 1;
+            background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('gapura.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: scroll;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        /* Judul Halaman */
+        .section-title {
+            color: #000000;
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        /* Container Pembungkus Kartu Kontak */
+        .contact-container {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        /* Gaya Kotak Informasi Putih */
+        .contact-card {
+            background-color: #ffffff;
+            border-radius: 18px;
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Judul di dalam Kartu */
+        .contact-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 12px;
+        }
+
+        /* Isi Teks di dalam Kartu */
+        .contact-card p {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #333333;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Responsif untuk Layar HP */
+        @media (max-width: 768px) {
+            .contact-card {
+                padding: 20px 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-title { font-size: 1.8rem; margin-bottom: 30px; }
+            .main-section { padding: 30px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Kelurahan Wangon</a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <img src="garis.png" alt="Menu" class="icon-garis">
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto text-end">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="index.html">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="profil.html">Profil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="sejarah.html">Sejarah</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="struktur.html">Struktur</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="umkm.html">UMKM</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="galeri.html">Galeri</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active fw-bold text-primary" href="kontak.html">Kontak</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN SECTION -->
+    <div class="main-section">
+        
+        <!-- Judul Atas -->
+        <h1 class="section-title">Kontak dan Pengaduan</h1>
+
+        <!-- Grid Kartu Informasi -->
+        <div class="contact-container container">
+            
+            <!-- Baris Atas: Alamat & SMS Center -->
+            <div class="row g-4 justify-content-center mb-4">
+                <!-- Kotak Alamat -->
+                <div class="col-md-5 col-12">
+                    <div class="contact-card">
+                        <h3>Alamat</h3>
+                        <p>Jl. Raya Wangon No. 07 ( (0286) 593601 Banjarnegara 53417</p>
+                    </div>
+                </div>
+                
+                <!-- Kotak SMS Center -->
+                <div class="col-md-5 col-12">
+                    <div class="contact-card">
+                        <h3>SMS center</h3>
+                        <p>081228124447</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Baris Bawah: E-Mail (Center) -->
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-5 col-12">
+                    <div class="contact-card">
+                        <h3>E-Mail</h3>
+                        <p>@banjarnegarakab.goid</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Kelurahan Wangon</title>
+    <!-- Bootstrap 5 CSS via CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        /* Google Fonts untuk menyamakan tema font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navbar Customization */
+        .navbar {
+            background-color: #ffffff !important;
+            padding: 15px 20px;
+        }
+        .navbar-brand {
+            color: #27a770 !important; /* Warna hijau khas */
+            font-weight: 700;
+            font-size: 24px;
+            text-decoration: none;
+        }
+        
+        /* Tombol Toggler Menggunakan Gambar garis.png */
+        .navbar-toggler {
+            border: none;
+            padding: 0;
+            background: transparent;
+        }
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+        .icon-garis {
+            width: 30px;
+            height: auto;
+            display: block;
+        }
+
+        /* Main Section dengan Background Kelurahan.jpeg */
+        .main-section {
+            flex: 1;
+            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('Kelurahan.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: scroll;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        /* Judul Halaman */
+        .section-title {
+            color: #000000;
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Pembungkus Gambar Pertama & Kedua */
+        .img-container {
+            max-width: 750px;
+            width: 100%;
+            margin-bottom: 35px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .img-content {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        /* KOTAK PUTIH VISI & MISI TEKS */
+        .visi-misi-card {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px 45px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            max-width: 750px;
+            width: 100%;
+            color: #000000;
+            margin-bottom: 35px; /* Jarak ke gambar s.png di bawahnya */
+        }
+
+        .visi-misi-card h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .visi-misi-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        /* Garis pembatas tengah untuk layar desktop */
+        .border-divider {
+            border-right: 1px solid #ccc;
+            padding-right: 25px;
+        }
+
+        .visi-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .misi-intro {
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .misi-list {
+            padding-left: 15px;
+            margin: 0;
+        }
+
+        .misi-list li {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        /* Gambar s.png melengkung ujungnya agar serasi */
+        .img-visi-misi {
+            border-radius: 20px;
+        }
+
+        /* Responsif untuk Layar HP */
+        @media (max-width: 768px) {
+            .border-divider {
+                border-right: none;
+                border-bottom: 1px solid #ccc;
+                padding-right: 0;
+                padding-bottom: 25px;
+                margin-bottom: 25px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-title { font-size: 1.8rem; margin-bottom: 20px; }
+            .main-section { padding: 25px 15px; }
+            .visi-misi-card { padding: 30px 20px; }
+            .visi-misi-card h2 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Kelurahan Wangon</a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <img src="garis.png" alt="Menu" class="icon-garis">
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto text-end">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="index.html">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active fw-bold text-primary" href="profil.html">Profil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="sejarah.html">Sejarah</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="struktur.html">Struktur</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="umkm.html">UMKM</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="galeri.html">Galeri</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="kontak.html">Kontak</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN SECTION -->
+    <div class="main-section">
+        
+        <h1 class="section-title">Profil Kelurahan</h1>
+
+        <!-- 1. Foto Paling Atas (w.png - Informasi Tabel & Peta Kelurahan) -->
+        <div class="img-container">
+            <img src="w.png" alt="Data Tabel Kelurahan Wangon" class="img-content">
+        </div>
+
+        <!-- 2. Kotak Teks Visi & Misi Asli -->
+        <div class="visi-misi-card">
+            <h2>Visi dan Misi</h2>
+            
+            <div class="row">
+                <!-- Bagian Visi -->
+                <div class="col-md-6 border-divider">
+                    <h3 class="text-center">Visi</h3>
+                    <p class="text-center visi-text">
+                        "Mewujudkan Kelurahan Wangon yang Unggul, Mandiri, dan Responsif dalam Pelayanan Publik Menuju Masyarakat yang Sejahtera dan Berintegritas."
+                    </p>
+                </div>
+                
+                <!-- Bagian Misi -->
+                <div class="col-md-6 ps-md-4">
+                    <h3 class="text-center">Misi</h3>
+                    <p class="misi-intro text-center text-md-start">Untuk mencapai visi tersebut, misi yang diusung adalah:</p>
+                    <ol class="misi-list">
+                        <li>Transformasi Pelayanan Publik</li>
+                        <li>Peningkatan Infrastruktur Kelurahan</li>
+                        <li>Pemberdayaan Ekonomi Lokal (UMKM)</li>
+                        <li>Penguatan Tata Kelola Lingkungan & Sosial</li>
+                        <li>Pengembangan Sumber Daya Manusia</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Gambar s.png (Diletakkan di bawah Kotak Visi Misi Teks) -->
+        <div class="img-container">
+            <img src="s.png" alt="Visual Visi dan Misi Kelurahan Wangon" class="img-content img-visi-misi">
+        </div>
+
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
